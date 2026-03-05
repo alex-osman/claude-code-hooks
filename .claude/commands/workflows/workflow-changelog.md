@@ -28,7 +28,7 @@ Spawn using `subagent_type: "workflow-changelog-agent"`. Give it this prompt:
 > 2. Hooks Guide: https://code.claude.com/docs/en/hooks-guide
 > 3. Changelog: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 >
-> Then read all local repository files (settings, hooks.py, config, README, HOOKS-README, install settings, presentation) and analyze differences. Return a structured findings report covering missing hooks, configuration drift, version mismatches, hook behavior changes, bug fixes, matcher accuracy, presentation staleness, and agent frontmatter hooks.
+> Then read all local repository files (settings, hooks.py, config, README, HOOKS-README, install settings, presentation) and analyze differences. Return a structured findings report covering missing hooks, configuration drift, version mismatches, hook behavior changes, bug fixes, matcher accuracy, presentation staleness, agent frontmatter hooks, and schema hook discovery (hidden hooks in settings.json schema propertyNames enum not in docs).
 
 ### Agent 2: claude-code-guide
 
@@ -103,7 +103,8 @@ Produce a structured report with these sections:
 10. **Presentation Updates** — Staleness across all presentation elements
 11. **Hook Options Table** — Per-hook Options column accuracy
 12. **Agent Frontmatter Hooks** — 3-hook assumption verification
-13. **claude-code-guide Agent Findings** — Unique insights from the agent that weren't captured by the workflow-changelog-agent. Only include findings that add new information. If there are contradictions between the two agents, flag them for the user to resolve. Do NOT list "confirmed agreements" — if both agents found the same thing, that's expected and not worth reporting.
+13. **Schema Hook Discovery** — Hidden/undocumented hooks found in the settings.json schema `propertyNames` enum but not in official docs or changelog (e.g. `Elicitation`, `ElicitationResult`), and hooks in docs but not in the schema. Present as a comparison table: Hook Name | In Schema | In Official Docs | In Local Repo. Flag hidden hooks prominently — these are early signals of upcoming features.
+14. **claude-code-guide Agent Findings** — Unique insights from the agent that weren't captured by the workflow-changelog-agent. Only include findings that add new information. If there are contradictions between the two agents, flag them for the user to resolve. Do NOT list "confirmed agreements" — if both agents found the same thing, that's expected and not worth reporting.
 
 End with a prioritized **Action Items** summary table. Each item must include a `Status` column showing `NEW`, `RECURRING (first seen: <date>)`, or `RESOLVED`:
 
@@ -121,7 +122,8 @@ Priority Actions:
 9  | Hook Types/Env    | Document missing items                    | RECURRING (first seen: 2026-02-15)
 10 | Presentation      | Update to <version>                       | NEW
 11 | Agent Hook Docs   | Update frontmatter hook support           | NEW
-12 | Bug Fix           | Remove <workaround>                       | RESOLVED
+12 | Schema Discovery  | Hidden hook <Name> found in schema enum   | NEW
+13 | Bug Fix           | Remove <workaround>                       | RESOLVED
 ```
 
 Also include a **Resolved Since Last Run** section listing any items from the previous run that are no longer issues.
@@ -180,6 +182,22 @@ This is a standard maintenance step, NOT an issue to report. When the latest Cla
    Also update the date on the title slide and slide 3 if present.
 
 **Do NOT log version updates as action items in the changelog or report.** Version syncing is a routine part of every run, not a finding. Only log it if the update fails or requires manual intervention.
+
+---
+
+## Phase 2.7: Update CLAUDE.md If Needed
+
+**This phase is MANDATORY — always execute it after Phase 2.6.**
+
+Read `CLAUDE.md` at the project root and check if any of the following need updating based on the current run's findings:
+- Hook count (e.g. "currently **19**" → new count)
+- Agent hook count or list
+- `once: true` hook list
+- Slide count / `totalSlides`
+- New conventions or structural changes discovered
+- Any other facts in CLAUDE.md that are now stale
+
+If updates are needed, edit CLAUDE.md. If everything is current, skip silently.
 
 ---
 

@@ -36,6 +36,7 @@ Fetch all three sources using WebFetch simultaneously:
 1. **Hooks Reference** — `https://code.claude.com/docs/en/hooks` — Extract the complete list of officially supported hooks, matcher support, hook options, input schemas, decision control patterns, can-block status, and experimental features.
 2. **Hooks Guide** — `https://code.claude.com/docs/en/hooks-guide` — Extract hook types (`command`, `prompt`, `agent`), matcher values with examples, hook location scopes, environment variables (`CLAUDE_PROJECT_DIR`, `CLAUDE_ENV_FILE`, `CLAUDE_PLUGIN_ROOT`, `CLAUDE_CODE_REMOTE`), and security considerations.
 3. **Changelog** — `https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md` — Extract the last N version entries with version numbers, dates, and all hook-related changes (new hooks, behavior changes, new input fields, bug fixes, breaking changes, new options).
+4. **Settings Schema Hook Names** — Locate and read the Claude Code settings.json JSON schema to extract the `propertyNames` enum that lists all valid hook names. This schema is bundled with Claude Code and validates `.claude/settings.json`. Search for it using: `find $(dirname $(which claude)) -name "*.json" -exec grep -l "propertyNames" {} \; 2>/dev/null` or check common paths like `~/.claude/`, `/usr/local/lib/node_modules/@anthropic-ai/claude-code/`, and the VS Code extension directory `~/.vscode/extensions/anthropic*`. The schema contains a `propertyNames.enum` array inside the `hooks` property definition — extract that full array. If the schema file cannot be found, note it as "schema not located" and skip this step.
 
 ---
 
@@ -96,6 +97,14 @@ Cross-reference repo hooks against official docs. Flag any hooks in the repo tha
 ### Agent/Skill Frontmatter Hooks
 This project supports **6 agent hooks** (not all 16): PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. The changelog originally mentioned only 3, but testing confirms 6 actually fire. Compare against official docs and flag discrepancies.
 
+### Schema Hook Discovery (HIGH PRIORITY)
+If the settings.json schema `propertyNames` enum was extracted in Phase 1, compare it against three lists:
+1. **Schema vs Official Docs** — Hooks in the schema enum but NOT in the official hooks reference or changelog = **hidden/undocumented hooks** (e.g. `Elicitation`, `ElicitationResult` discovered in v2.1.64 schema). Flag these prominently.
+2. **Schema vs Local Repo** — Hooks in the schema enum but NOT in the local repo's `HOOK_SOUND_MAP` = hooks the project could add support for.
+3. **Official Docs vs Schema** — Hooks documented in official docs but NOT in the schema enum = schema is outdated or the hook hasn't been added to validation yet (e.g. `InstructionsLoaded` was in the v2.1.64 changelog but not in the schema). Flag as potential upcoming hooks.
+
+Report any discrepancies as a three-column table: Hook Name | In Schema | In Official Docs | In Local Repo.
+
 ### Presentation Accuracy
 Verify title slide version, hook counts, TOC, individual hook slides, lifecycle diagram, summary slide, and `totalSlides` variable.
 
@@ -118,6 +127,7 @@ Return your findings as a structured report with these sections:
 11. **Removed/Deprecated Hooks** — Hooks in repo but not in docs
 12. **Agent Frontmatter Hooks** — 3-hook assumption verification
 13. **Presentation Accuracy** — Staleness across presentation elements
+14. **Schema Hook Discovery** — Hidden/undocumented hooks found in schema but not in docs, and vice versa
 
 Be thorough and specific. Include version numbers, file paths, and line references where possible.
 

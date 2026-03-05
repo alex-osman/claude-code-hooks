@@ -120,7 +120,15 @@ Add `"disable<HookEventName>Hook": false` **before** the `"disableLogging"` line
 7. **Summary slide:** Add hook to appropriate category card. **If the hook can block**, also add it to the "Hooks That Can Block Execution" `matcher-values` div at the bottom of the summary slide.
 8. **JavaScript:** Update `const totalSlides = N`
 
-## Step 5: Verify
+## Step 5: Update CLAUDE.md
+
+Read `CLAUDE.md` at the project root and update any stale values:
+- Hook count (e.g. "currently **19**" → new count)
+- Agent hook count/list (only if this hook fires in agent sessions)
+- `once: true` hook list (only if this hook uses `once: true`)
+- Slide count / `totalSlides`
+
+## Step 6: Verify
 
 Count hooks across all files and print a summary:
 

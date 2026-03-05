@@ -176,3 +176,15 @@
 | 1 | HIGH | Can-Block Fix | PostToolUse can-block status wrong in presentation — should be "Can Block" not "Cannot Block"; also missing from summary can-block list (Rules 2A + 2C) | ✅ COMPLETE (changed badge to "Can Block" + added PostToolUse to summary list) |
 | 2 | LOW | Documentation | HTTP hook type (`type: "http"`) added in v2.1.63 — not documented in HOOKS-README Hook Types section | ✅ COMPLETE (added `type: "http"` section to HOOKS-README, updated count to "four hook handler types") |
 | 3 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves — official docs say "all supported" vs repo's tested 6 | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-05 05:48 AM PKT] Claude Code v2.1.69
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | Can-Block Fix | PostToolUseFailure can-block status wrong in presentation — should be "Can Block" not "Cannot Block"; also missing from summary can-block list and HOOKS-README Decision Control table (Rules 2A + 2C + 1H) | ✅ COMPLETE (changed badge to "Can Block" + added to summary list + added to Decision Control table) |
+| 2 | MEDIUM | New Input Field | `agent_id`/`agent_type` now available on ALL hook events (not just SubagentStart/SubagentStop) — document in HOOKS-README Common Input Fields section | ✅ COMPLETE (added to Common Input Fields table as conditional fields) |
+| 3 | MEDIUM | Schema Discovery | Elicitation and ElicitationResult hidden hooks found in v2.1.69 schema enum — document in Not-in-Official-Docs table | ✋ ON HOLD (recurring since 2026-03-04 v2.1.64; waiting for official documentation before adding) |
+| 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves — official docs say "all supported" vs repo's tested 6 | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+| 5 | LOW | Version Fix | InstructionsLoaded hook version corrected from v2.1.64 to v2.1.69 in HOOKS-README and README changelog table | ✅ COMPLETE (updated to v2.1.69) |

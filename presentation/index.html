@@ -540,7 +540,7 @@
         </div>
         <h1>Claude Code Voice Hooks</h1>
         <p class="subtitle">Explaining Claude Code Voice Hooks and Subagent Hooks</p>
-        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.63 | February 28, 2026</p>
+        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.69 | March 5, 2026</p>
     </div>
 
     <!-- Slide 2: Introduction -->
@@ -557,8 +557,8 @@
             <div class="use-case-item">
                 <span class="use-case-icon">🔢</span>
                 <div class="use-case-text">
-                    <strong>18 Hooks Explained</strong>
-                    <span>Claude Code currently supports 18 hooks (as of v2.1.63)</span>
+                    <strong>19 Hooks Explained</strong>
+                    <span>Claude Code currently supports 19 hooks (as of v2.1.69)</span>
                 </div>
             </div>
             <div class="use-case-item">
@@ -579,7 +579,7 @@
                 <span class="use-case-icon">🔊</span>
                 <div class="use-case-text">
                     <strong>Voice Notifications Demo</strong>
-                    <span>This repo integrates all 18 hooks with audio feedback</span>
+                    <span>This repo integrates all 19 hooks with audio feedback</span>
                 </div>
             </div>
         </div>
@@ -595,8 +595,8 @@
 
     <!-- Slide 3: Table of Contents -->
     <div class="slide" data-slide="3">
-        <h1>The 18 Hooks</h1>
-        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.63 | February 28, 2026 — More hooks may be added in future versions.</p>
+        <h1>The 19 Hooks</h1>
+        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.69 | March 5, 2026 — More hooks may be added in future versions.</p>
 
         <div class="toc-list">
             <div class="toc-item" onclick="goToSlide(5)">
@@ -671,6 +671,10 @@
                 <span class="toc-number">18</span>
                 <span class="toc-name">WorktreeRemove</span>
             </div>
+            <div class="toc-item" onclick="goToSlide(23)">
+                <span class="toc-number">19</span>
+                <span class="toc-name">InstructionsLoaded</span>
+            </div>
         </div>
     </div>
 
@@ -740,11 +744,12 @@
                     <span class="matcher-tag">ConfigChange</span>
                     <span class="matcher-tag">WorktreeCreate</span>
                     <span class="matcher-tag">WorktreeRemove</span>
+                    <span class="matcher-tag">InstructionsLoaded</span>
                 </div>
             </div>
         </div>
 
-        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, ConfigChange, WorktreeCreate, and WorktreeRemove hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
+        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, ConfigChange, WorktreeCreate, WorktreeRemove, and InstructionsLoaded hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
     </div>
 
     <!-- Slide 5: SessionStart -->
@@ -1000,7 +1005,7 @@
         <div class="hook-title">
             <span class="hook-number">5</span>
             <span class="hook-name">PostToolUseFailure</span>
-            <span class="cannot-block">Cannot Block</span>
+            <span class="can-block">Can Block</span>
         </div>
 
         <div class="trigger-box">
@@ -1855,14 +1860,71 @@
         </div>
     </div>
 
-    <!-- Slide 23: Agent Hooks -->
+    <!-- Slide 23: InstructionsLoaded -->
     <div class="slide" data-slide="23">
+        <div class="hook-title">
+            <span class="hook-number">19</span>
+            <span class="hook-name">InstructionsLoaded</span>
+            <span class="cannot-block">Cannot Block</span>
+        </div>
+
+        <div class="trigger-box">
+            <h4>When It Triggers</h4>
+            <p>When CLAUDE.md or <code>.claude/rules/*.md</code> files are loaded into context. This fires whenever instructions are read, including at session start and after instruction reloads (since v2.1.64).</p>
+        </div>
+
+        <div class="how-to-trigger">
+            <h4>How to Trigger</h4>
+            <p>Triggered automatically when Claude Code loads instruction files:</p>
+            <div class="trigger-example">Start a session with CLAUDE.md or .claude/rules/*.md present</div>
+            <p style="margin-top: 12px;">The hook fires each time instructions are loaded or reloaded into context.</p>
+        </div>
+
+        <h3>Use Cases</h3>
+        <div class="use-cases">
+            <div class="use-case-item">
+                <span class="use-case-icon">🔊</span>
+                <div class="use-case-text">
+                    <strong>Voice: "Instructions loaded"</strong>
+                    <span>Audio notification when project instructions are loaded</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">📝</span>
+                <div class="use-case-text">
+                    <strong>Log Instruction Loads</strong>
+                    <span>Track when and which instruction files are loaded for auditing</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">🔄</span>
+                <div class="use-case-text">
+                    <strong>Validate Instructions</strong>
+                    <span>Check that loaded instructions meet organizational standards</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">📊</span>
+                <div class="use-case-text">
+                    <strong>Monitor Instruction Changes</strong>
+                    <span>Detect when instructions change between sessions or reloads</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sound-demo">
+            🔊 Sound: instructionsloaded.wav — "Instructions loaded"
+        </div>
+    </div>
+
+    <!-- Slide 24: Agent Hooks -->
+    <div class="slide" data-slide="24">
         <h1>Agent Hooks (Bonus)</h1>
         <p>Claude Code 2.1.0 introduced support for agent-specific hooks defined in agent frontmatter files. These hooks only run within the agent's lifecycle.</p>
 
         <div class="trigger-box">
             <h4>Supported Agent Hooks</h4>
-            <p>Agent frontmatter hooks support <strong>6 of 18 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
+            <p>Agent frontmatter hooks support <strong>6 of 19 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
         </div>
 
         <div class="how-to-trigger">
@@ -1960,8 +2022,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 24: Configuration -->
-    <div class="slide" data-slide="24">
+    <!-- Slide 25: Configuration -->
+    <div class="slide" data-slide="25">
         <h1>Configuration</h1>
         <p>Hooks are configured in <code>.claude/settings.json</code> and can be individually enabled/disabled.</p>
 
@@ -2002,8 +2064,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 25: Summary -->
-    <div class="slide" data-slide="25">
+    <!-- Slide 26: Summary -->
+    <div class="slide" data-slide="26">
         <h1>Summary</h1>
 
         <div class="info-grid">
@@ -2016,6 +2078,7 @@ hooks:
                 <p><strong>ConfigChange</strong> — Config file modified</p>
                 <p><strong>WorktreeCreate</strong> — Agent worktree created</p>
                 <p><strong>WorktreeRemove</strong> — Agent worktree removed</p>
+                <p><strong>InstructionsLoaded</strong> — Instructions loaded into context</p>
             </div>
             <div class="info-card">
                 <h4>User Interaction</h4>
@@ -2045,6 +2108,7 @@ hooks:
             <span class="matcher-tag">UserPromptSubmit</span>
             <span class="matcher-tag">PreToolUse</span>
             <span class="matcher-tag">PostToolUse</span>
+            <span class="matcher-tag">PostToolUseFailure</span>
             <span class="matcher-tag">PermissionRequest</span>
             <span class="matcher-tag">SubagentStop</span>
             <span class="matcher-tag">Stop</span>
@@ -2113,7 +2177,7 @@ hooks:
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
     </div>
 
-    <div class="slide-counter" id="slideCounter">1 / 25</div>
+    <div class="slide-counter" id="slideCounter">1 / 26</div>
 
     <div class="keyboard-hint">
         <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to navigate
@@ -2121,7 +2185,7 @@ hooks:
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 25;
+        const totalSlides = 26;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');

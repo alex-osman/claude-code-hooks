@@ -72,10 +72,20 @@ Rules that verify settings files, config, and filesystem assets.
 
 ---
 
-## 5. Process
+## 5. Schema & Hidden Hooks
+
+Rules that verify the settings.json schema against official docs and local repo.
+
+| # | Category | Check | Depth | Compare Against | Added | Origin |
+|---|----------|-------|-------|-----------------|-------|--------|
+| 5A | Schema Hook Names | Locate the Claude Code settings.json JSON schema and extract the `propertyNames` enum from the `hooks` property. Compare the enum entries against: (a) official docs hook list, (b) local repo HOOK_SOUND_MAP keys. Flag hooks in schema but not in docs as "hidden/undocumented". Flag hooks in docs but not in schema as "schema outdated". Flag hooks in schema but not in local repo as "unsupported by project" | cross-file | settings.json schema vs hooks-reference page vs hooks.py HOOK_SOUND_MAP | 2026-03-04 | Elicitation and ElicitationResult were discovered in the schema enum during v2.1.64 InstructionsLoaded addition — no rule existed to detect hidden hooks in the schema |
+
+---
+
+## 6. Process
 
 Meta-rules about the workflow verification process itself.
 
 | # | Category | Check | Depth | Compare Against | Added | Origin |
 |---|----------|-------|-------|-----------------|-------|--------|
-| 5A | Source Credibility Guard | Only flag items as drift if confirmed by official sources (hooks-reference page, hooks-guide page, GitHub changelog). Third-party blog sources may be outdated or wrong — use them for leads only, verify against official docs before flagging | content-match | official docs only | 2026-02-24 | Past runs produced false positives: OpenInEditor hook (2026-02-20), CLAUDE_HOOK_* env vars (2026-02-20), Windows relative path (2026-02-24) — all sourced from blogs, not official docs |
+| 6A | Source Credibility Guard | Only flag items as drift if confirmed by official sources (hooks-reference page, hooks-guide page, GitHub changelog). Third-party blog sources may be outdated or wrong — use them for leads only, verify against official docs before flagging | content-match | official docs only | 2026-02-24 | Past runs produced false positives: OpenInEditor hook (2026-02-20), CLAUDE_HOOK_* env vars (2026-02-20), Windows relative path (2026-02-24) — all sourced from blogs, not official docs |
