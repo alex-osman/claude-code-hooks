@@ -188,3 +188,18 @@
 | 3 | MEDIUM | Schema Discovery | Elicitation and ElicitationResult hidden hooks found in v2.1.69 schema enum — document in Not-in-Official-Docs table | ✋ ON HOLD (recurring since 2026-03-04 v2.1.64; waiting for official documentation before adding) |
 | 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves — official docs say "all supported" vs repo's tested 6 | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
 | 5 | LOW | Version Fix | InstructionsLoaded hook version corrected from v2.1.64 to v2.1.69 in HOOKS-README and README changelog table | ✅ COMPLETE (updated to v2.1.69) |
+
+---
+
+## [2026-03-06 08:20 AM PKT] Claude Code v2.1.70
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | New Input Field | Add 6 InstructionsLoaded fields (`file_path`, `memory_type`, `load_reason`, `globs`, `trigger_file_path`, `parent_file_path`) to HOOKS-README Options column | ✅ COMPLETE (added to Options column) |
+| 2 | HIGH | New Input Field | Add `tool_use_id` to PreToolUse, PostToolUse, PostToolUseFailure Options columns in HOOKS-README | ✅ COMPLETE (added to Options columns) |
+| 3 | MEDIUM | Decision Control | Update TeammateIdle/TaskCompleted in Decision Control table — v2.1.70 adds JSON `continue:false` support | ✅ COMPLETE (updated Decision Control table) |
+| 4 | MEDIUM | Not-in-Docs Table | Remove InstructionsLoaded from Not-in-Docs table (now in official docs); update Setup note from "17 hooks" to "18 hooks" | ✅ COMPLETE (removed InstructionsLoaded row, updated Setup note) |
+| 5 | LOW | Config Drift | Fix HOOKS-README line 387 cross-reference from "official 18 hooks" to "official 19 hooks" | ✅ COMPLETE (updated anchor link) |
+| 6 | LOW | Presentation | Fix InstructionsLoaded slide version from "v2.1.64" to "v2.1.69" | ✅ COMPLETE (updated presentation slide) |
+| 7 | LOW | Schema Discovery | Elicitation/ElicitationResult hidden hooks in schema — monitor | ✋ ON HOLD (recurring since 2026-03-04; waiting for official documentation) |
+| 8 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
