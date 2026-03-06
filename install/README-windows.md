@@ -44,6 +44,14 @@ rmdir /S /Q temp-hooks
 > - Python command: `python3` (macOS/Linux) vs `python` (Windows)
 > - Script path: `${CLAUDE_PROJECT_DIR}` env variable (macOS/Linux) vs relative path (Windows)
 
+### Step 3: Start Claude
+
+Start Claude, you will hear "Claude session start" which is the sound played on startup.
+
+```
+claude
+```
+
 ---
 
 ## Optional: Test Agent Hooks
