@@ -160,6 +160,8 @@ def main():
         if sound_folder:
             play_sound(sound_folder)
 
+        # Output valid JSON so blocking hooks (WorktreeCreate, etc.) succeed
+        print("{}")
         sys.exit(0)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)

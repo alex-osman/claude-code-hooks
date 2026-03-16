@@ -35,8 +35,15 @@
   .prompt-step { font-size: 17px; font-weight: 700; color: #111; white-space: nowrap; }
   .prompt-hooks { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
   .hook-tag { font-size: 13px; font-weight: 500; padding: 2px 8px; border-radius: 8px; background: #f0f0f0; color: #333; border: 1px solid #ddd; }
-  .prompt-code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 16px; color: #111; background: #f6f6f6; border-radius: 4px; padding: 6px 12px; white-space: pre-wrap; line-height: 1.5; }
+  .prompt-code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 16px; color: #111; background: #f6f6f6; border-radius: 4px; padding: 4px 0; line-height: 1.5; }
   .prompt-code .prefix { color: #999; }
+  .prompt-line { display: flex; align-items: center; padding: 2px 12px; gap: 6px; }
+  .prompt-line-text { flex: 1; white-space: pre-wrap; }
+  .copy-btn { flex-shrink: 0; background: none; border: none; cursor: pointer; padding: 2px; border-radius: 3px; opacity: 0; transition: opacity 0.15s; color: #999; }
+  .prompt-line:hover .copy-btn { opacity: 1; }
+  .copy-btn:hover { color: #333; background: #e0e0e0; }
+  .copy-btn.copied { opacity: 1; color: #22863a; }
+  .copy-btn svg { display: block; width: 14px; height: 14px; }
 
   .bonus-section { border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px 14px; margin-bottom: 8px; }
   .bonus-title { font-size: 13px; font-weight: 700; color: #555; margin-bottom: 6px; }
@@ -98,51 +105,51 @@
     <div class="prompts-grid">
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">1. Start Claude</span><div class="prompt-hooks"><span class="hook-tag">Setup</span><span class="hook-tag">SessionStart</span><span class="hook-tag">InstructionsLoaded</span></div></div>
-        <div class="prompt-code"><span class="prefix">$</span> cd demo && claude</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> cd demo && claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">7. Elicitation</span><div class="prompt-hooks"><span class="hook-tag">Elicitation</span><span class="hook-tag">ElicitationResult</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> Use elicit_boolean to ask if I like pizza</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Use elicit_boolean to ask if I like pizza</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">2. Use tools</span><div class="prompt-hooks"><span class="hook-tag">UserPromptSubmit</span><span class="hook-tag">PreToolUse</span><span class="hook-tag">PermissionRequest</span><span class="hook-tag">PostToolUse</span><span class="hook-tag">Stop</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> What is the weather in Karachi?</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> What is the weather in Karachi?</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">8. Worktree</span><div class="prompt-hooks"><span class="hook-tag">WorktreeCreate</span><span class="hook-tag">WorktreeRemove</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> Launch agent with isolation: "worktree"</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Launch agent with isolation: "worktree" to fetch the current time</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">3. Subagent</span><div class="prompt-hooks"><span class="hook-tag">SubagentStart</span><span class="hook-tag">SubagentStop</span><span class="hook-tag">TaskCompleted</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> Use Explore agent to read the README.md file</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Use Explore agent to read the README.md file</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">9. Config change</span><div class="prompt-hooks"><span class="hook-tag">ConfigChange</span></div></div>
-        <div class="prompt-code"><span class="prefix">$</span> Edit .claude/settings.json while running</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> Edit .claude/settings.json while running</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">4. Failure</span><div class="prompt-hooks"><span class="hook-tag">PostToolUseFailure</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> ls ABC</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> ls ABC</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">10. Notification</span><div class="prompt-hooks"><span class="hook-tag">Notification</span></div></div>
-        <div class="prompt-code">Leave Claude idle</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text">Leave Claude idle</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">5. Compact</span><div class="prompt-hooks"><span class="hook-tag">PreCompact</span><span class="hook-tag">PostCompact</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> /compact</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> /compact</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">11. End session</span><div class="prompt-hooks"><span class="hook-tag">SessionEnd</span></div></div>
-        <div class="prompt-code"><span class="prefix">&gt;</span> exit</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> exit</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">6. Agent teams</span><div class="prompt-hooks"><span class="hook-tag">TeammateIdle</span></div></div>
-        <div class="prompt-code"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create an agent team to QA this demo project</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card">
         <div class="prompt-header"><span class="prompt-step">12. Setup</span><div class="prompt-hooks"><span class="hook-tag">Setup</span></div></div>
-        <div class="prompt-code"><span class="prefix">$</span> claude --init-only</div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> claude --init-only</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
     </div>
   </div>
@@ -299,6 +306,12 @@ async function resetHooks(){try{await fetch(API_BASE+'/api/reset',{method:'POST'
 h.addEventListener('mousedown',function(e){e.preventDefault();d=true;h.classList.add('dragging');document.body.style.cursor='col-resize';document.body.style.userSelect='none'});
 document.addEventListener('mousemove',function(e){if(!d)return;var cr=mc.getBoundingClientRect(),tw=cr.width,mx=e.clientX-cr.left,rw=tw-mx-4;var mr=tw*0.3;if(rw<mr)rw=mr;if(tw-rw-4<200)return;rp.style.width=(rw/tw*100)+'%'});
 document.addEventListener('mouseup',function(){if(d){d=false;h.classList.remove('dragging');document.body.style.cursor='';document.body.style.userSelect=''}})})();
+
+// Copy button SVG + logic
+var COPY_SVG='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M3.5 10.5h-1a1 1 0 01-1-1v-7a1 1 0 011-1h7a1 1 0 011 1v1"/></svg>';
+var CHECK_SVG='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5l3.5 3.5 6.5-7"/></svg>';
+document.querySelectorAll('.copy-btn').forEach(function(b){b.innerHTML=COPY_SVG});
+function copyLine(btn){var t=btn.parentElement.querySelector('.prompt-line-text');var txt=t.textContent.replace(/^[$>]\s*/,'');navigator.clipboard.writeText(txt);btn.innerHTML=CHECK_SVG;btn.classList.add('copied');setTimeout(function(){btn.innerHTML=COPY_SVG;btn.classList.remove('copied')},1500)}
 
 document.addEventListener('DOMContentLoaded',pollState);
 </script>
