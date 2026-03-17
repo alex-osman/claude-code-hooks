@@ -1,5 +1,5 @@
 # Claude Code Voice Hooks
-[![Hooks](https://img.shields.io/badge/supports%20all-22%20hooks-white?style=flat&labelColor=555)](https://github.com/shanraisshan/claude-code-voice-hooks/blob/main/.claude/hooks/HOOKS-README.md#hook-events-overview---official-22-hooks) [![Version](https://img.shields.io/badge/updated%20with%20Claude%20Code-v2.1.77%20(Mar%2017%2C%202026%2012:45%20PM%20PKT)-white?style=flat&labelColor=555)](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+[![Hooks](https://img.shields.io/badge/supports%20all-22%20hooks-white?style=flat&labelColor=555)](https://github.com/shanraisshan/claude-code-voice-hooks/blob/main/.claude/hooks/HOOKS-README.md#hook-events-overview---official-22-hooks) [![Version](https://img.shields.io/badge/updated%20with%20Claude%20Code-v2.1.77%20(Mar%2017%2C%202026%2010:10%20PM%20PKT)-white?style=flat&labelColor=555)](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 
 <p align="center">
   <img src="!/claude-speaking.svg" alt="Claude Code mascot speaking" width="168" height="108">
@@ -25,6 +25,15 @@
   <a href="install/README-linux.md"><img src="!/pill-linux.svg" alt="Linux" height="36"></a>&nbsp;
   <a href="install/README-windows.md"><img src="!/pill-windows.svg" alt="Windows" height="36"></a>
 </p>
+
+![How to Use](!/how-to-use.svg)
+
+**Step 1.** Start Claude Code:
+```bash
+claude
+```
+
+**Step 2.** Send a prompt (e.g., `Hi`) — you'll hear a sound on session start, tool use, agent response, and more.
 
 ## Common Errors
 
