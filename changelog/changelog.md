@@ -266,3 +266,15 @@
 | 5 | MEDIUM | Decision Control | Add Elicitation/ElicitationResult to HOOKS-README Decision Control table (both can block) | ✅ COMPLETE (added both rows) |
 | 6 | LOW | Config Drift | Fix Setup sound file naming: `Setup.mp3` → `setup.mp3` for Linux case-sensitivity | ✅ COMPLETE (renamed to lowercase) |
 | 7 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-17 12:44 PM PKT] Claude Code v2.1.77
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | MEDIUM | Matcher/Schema | Update PreToolUse matcher example in HOOKS-README line 426: add `Agent`, `WebFetch`, `WebSearch` tool names | ✅ COMPLETE (added 3 tool names to matcher example) |
+| 2 | LOW | Config Drift | Fix HOOKS-README line 394 stale anchor `#hook-events-overview---official-19-hooks` → `#hook-events-overview---official-22-hooks` | ✅ COMPLETE (fixed internal anchor) |
+| 3 | LOW | Schema Discovery | Document `asyncRewake` schema option in HOOKS-README (exists since v2.1.72, undocumented in official docs) | ✅ COMPLETE (added Hook Option subsection) |
+| 4 | LOW | Presentation | Fix slide counter initial text "1 / 26" → "1 / 29" in presentation/index.html line 2376 | ✅ COMPLETE (updated to 1 / 29) |
+| 5 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

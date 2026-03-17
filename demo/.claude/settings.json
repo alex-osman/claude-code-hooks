@@ -232,7 +232,7 @@
             "type": "command",
             "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/demo-hooks.py",
             "timeout": 5000,
-            "async": true,
+            "async": false,
             "statusMessage": "WorktreeCreate"
           }
         ]
@@ -258,7 +258,7 @@
             "type": "command",
             "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/demo-hooks.py",
             "timeout": 5000,
-            "async": true,
+            "async": false,
             "statusMessage": "WorktreeRemove"
           }
         ]

@@ -286,6 +286,20 @@ Hooks can run in the background without blocking Claude Code's execution by addi
 
 This project uses `async: true` for all hooks since voice notifications are side-effects that don't need to block execution. The `timeout` specifies how long the async hook can run before being terminated.
 
+### Hook Option: `asyncRewake` (since v2.1.72, undocumented)
+
+The `asyncRewake` option combines async execution with the ability to wake the model on failure:
+
+```json
+{
+  "type": "command",
+  "command": "python3 .claude/hooks/scripts/hooks.py",
+  "asyncRewake": true
+}
+```
+
+When `asyncRewake` is `true`, the hook runs in the background (implies `async`) but if it exits with code 2 (blocking error), it wakes the model to handle the error. This is useful for hooks that are normally non-blocking but need to surface critical failures. Discovered in the settings schema `propertyNames` — not yet in official documentation.
+
 ### Hook Option: `statusMessage`
 
 The `statusMessage` field sets a custom spinner message displayed to the user while the hook is running:
@@ -391,7 +405,7 @@ Every hook receives a JSON object on stdin containing these common fields, in ad
 | `agent_id` | string | Unique subagent identifier. Present when the hook fires inside a subagent context (since v2.1.69) |
 | `agent_type` | string | Agent type name (e.g. `Bash`, `Explore`, `Plan`, or custom). Present when using `--agent <name>` flag or inside a subagent (since v2.1.69) |
 
-> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-19-hooks) table above.
+> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-22-hooks) table above.
 
 ## Hooks Management Commands
 
@@ -423,7 +437,7 @@ Matchers filter which events trigger a hook. Not all hooks support matchers — 
 
 | Hook | Matcher Field | Possible Values | Example |
 |------|--------------|-----------------|---------|
-| `PreToolUse` | `tool_name` | Any tool name: `Bash`, `Read`, `Edit`, `Write`, `Glob`, `Grep`, `mcp__*` | `"matcher": "Bash"` |
+| `PreToolUse` | `tool_name` | Any tool name: `Bash`, `Read`, `Edit`, `Write`, `Glob`, `Grep`, `Agent`, `WebFetch`, `WebSearch`, `mcp__*` | `"matcher": "Bash"` |
 | `PermissionRequest` | `tool_name` | Same as PreToolUse | `"matcher": "mcp__memory__.*"` |
 | `PostToolUse` | `tool_name` | Same as PreToolUse | `"matcher": "Write"` |
 | `PostToolUseFailure` | `tool_name` | Same as PreToolUse | `"matcher": "Bash"` |

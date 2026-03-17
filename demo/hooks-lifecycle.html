@@ -30,7 +30,8 @@
 
   .prompts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
-  .prompt-card { border: 1px solid #e0e0e0; border-radius: 5px; padding: 8px 12px; }
+  .prompt-card { border: 1px solid #e0e0e0; border-radius: 5px; padding: 8px 12px; transition: border-color 0.4s; }
+  .prompt-card.card-lit { border-color: #e6b800; }
   .prompt-header { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
   .prompt-step { font-size: 17px; font-weight: 700; color: #111; white-space: nowrap; }
   .prompt-hooks { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
@@ -80,7 +81,7 @@
   .connector-dashed { stroke: #30363d; stroke-width: 1; stroke-dasharray: 4 3; fill: none; }
   @keyframes pulse-glow { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
   .hook-group.just-fired .hook-rect.lit { animation: pulse-glow 0.6s ease-in-out; }
-  .fire-count { font-size: 9px; font-weight: 700; fill: #FFD700; display: none; font-family: system-ui, -apple-system, sans-serif; }
+  .fire-count { font-size: 9px; font-weight: 700; fill: #000; display: none; font-family: system-ui, -apple-system, sans-serif; }
   .fire-count.visible { display: block; }
 
   #event-log { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(13,17,23,0.95); border-top: 1px solid #30363d; padding: 6px 10px; height: 90px; overflow-y: auto; z-index: 10; }
@@ -103,51 +104,51 @@
   <!-- LEFT PANEL (white/light theme) -->
   <div class="left-panel">
     <div class="prompts-grid">
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="Setup,SessionStart,InstructionsLoaded">
         <div class="prompt-header"><span class="prompt-step">1. Start Claude</span><div class="prompt-hooks"><span class="hook-tag">Setup</span><span class="hook-tag">SessionStart</span><span class="hook-tag">InstructionsLoaded</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> cd demo && claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="Elicitation,ElicitationResult">
         <div class="prompt-header"><span class="prompt-step">7. Elicitation</span><div class="prompt-hooks"><span class="hook-tag">Elicitation</span><span class="hook-tag">ElicitationResult</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Use elicit_boolean to ask if I like pizza</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="UserPromptSubmit,PreToolUse,PermissionRequest,PostToolUse,Stop">
         <div class="prompt-header"><span class="prompt-step">2. Use tools</span><div class="prompt-hooks"><span class="hook-tag">UserPromptSubmit</span><span class="hook-tag">PreToolUse</span><span class="hook-tag">PermissionRequest</span><span class="hook-tag">PostToolUse</span><span class="hook-tag">Stop</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> What is the weather in Karachi?</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="WorktreeCreate,WorktreeRemove">
         <div class="prompt-header"><span class="prompt-step">8. Worktree</span><div class="prompt-hooks"><span class="hook-tag">WorktreeCreate</span><span class="hook-tag">WorktreeRemove</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Launch agent with isolation: "worktree" to fetch the current time</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Launch agent with isolation: "worktree" to fetch the current time, save it to time.txt, and commit it</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Remove the worktree</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="SubagentStart,SubagentStop,TaskCompleted">
         <div class="prompt-header"><span class="prompt-step">3. Subagent</span><div class="prompt-hooks"><span class="hook-tag">SubagentStart</span><span class="hook-tag">SubagentStop</span><span class="hook-tag">TaskCompleted</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Use Explore agent to read the README.md file</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="ConfigChange">
         <div class="prompt-header"><span class="prompt-step">9. Config change</span><div class="prompt-hooks"><span class="hook-tag">ConfigChange</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> Edit .claude/settings.json while running</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="PostToolUseFailure">
         <div class="prompt-header"><span class="prompt-step">4. Failure</span><div class="prompt-hooks"><span class="hook-tag">PostToolUseFailure</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> ls ABC</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="Notification">
         <div class="prompt-header"><span class="prompt-step">10. Notification</span><div class="prompt-hooks"><span class="hook-tag">Notification</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text">Leave Claude idle</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="PreCompact,PostCompact">
         <div class="prompt-header"><span class="prompt-step">5. Compact</span><div class="prompt-hooks"><span class="hook-tag">PreCompact</span><span class="hook-tag">PostCompact</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> /compact</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="SessionEnd">
         <div class="prompt-header"><span class="prompt-step">11. End session</span><div class="prompt-hooks"><span class="hook-tag">SessionEnd</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> exit</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="TeammateIdle">
         <div class="prompt-header"><span class="prompt-step">6. Agent teams</span><div class="prompt-hooks"><span class="hook-tag">TeammateIdle</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create an agent team to QA this demo project</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
-      <div class="prompt-card">
+      <div class="prompt-card" data-card-hooks="Setup">
         <div class="prompt-header"><span class="prompt-step">12. Setup</span><div class="prompt-hooks"><span class="hook-tag">Setup</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> claude --init-only</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
@@ -294,12 +295,19 @@ function updateVisualization(state){
     }else{r.classList.remove('lit');t.forEach(function(x){x.classList.remove('lit')})}
     if(c&&tc>0){c.textContent=tc;c.classList.add('visible')}
   });
+  // Update card highlights on left panel
+  document.querySelectorAll('[data-card-hooks]').forEach(function(card){
+    var hooks=card.dataset.cardHooks.split(',');
+    var anyActive=hooks.some(function(h){return state.hooks&&state.hooks[h]&&state.hooks[h].active});
+    if(anyActive){card.classList.add('card-lit')}
+    else{card.classList.remove('card-lit')}
+  });
   previousState=state.hooks?JSON.parse(JSON.stringify(state.hooks)):{};
 }
 
 function setConnectionStatus(c){document.getElementById('status-dot').style.background=c?'#3fb950':'#f85149';document.getElementById('status-text').textContent=c?'Connected':'Disconnected'}
 
-async function resetHooks(){try{await fetch(API_BASE+'/api/reset',{method:'POST'});previousState={};document.querySelectorAll('.lit').forEach(function(e){e.classList.remove('lit')});document.querySelectorAll('.fire-count').forEach(function(e){e.classList.remove('visible');e.textContent=''});document.getElementById('log-entries').innerHTML=''}catch(e){}}
+async function resetHooks(){try{await fetch(API_BASE+'/api/reset',{method:'POST'});previousState={};document.querySelectorAll('.lit').forEach(function(e){e.classList.remove('lit')});document.querySelectorAll('.fire-count').forEach(function(e){e.classList.remove('visible');e.textContent=''});document.querySelectorAll('.card-lit').forEach(function(e){e.classList.remove('card-lit')});document.getElementById('log-entries').innerHTML=''}catch(e){}}
 
 // Resizable divider
 (function(){var h=document.getElementById('resize-handle'),rp=document.getElementById('right-panel'),mc=document.querySelector('.main-content'),d=false;

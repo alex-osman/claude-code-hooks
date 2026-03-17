@@ -109,6 +109,61 @@ Add `"disable<HookEventName>Hook": false` **before** the `"disableLogging"` line
 - Add the hook to the "Hook Trigger Summary" output format list
 - Update all "N" hook count references in the agent body
 
+### Demo files (3 files)
+
+The `demo/` directory has its own hook setup that mirrors the main project. All three files must be updated:
+
+#### `demo/.claude/settings.json`
+
+Add the hook entry using the same structure as existing entries:
+
+```json
+"<HookEventName>": [
+  {
+    "hooks": [
+      {
+        "type": "command",
+        "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/demo-hooks.py",
+        "timeout": <timeout>,
+        "async": true,
+        "statusMessage": "<HookEventName>"
+      }
+    ]
+  }
+]
+```
+
+Add `"once": true` only if applicable. Use `"async": false` only for WorktreeCreate/WorktreeRemove-style hooks. Use timeout `30000` only for Setup.
+
+#### `demo/.claude/hooks/scripts/demo-hooks.py`
+
+- Add `"<HookEventName>": "<lowercase>"` to `HOOK_SOUND_MAP`
+- Update the docstring hook count ("Handles all N Claude Code hooks")
+
+#### `demo/hooks-lifecycle.html`
+
+Update both the **flowchart SVG** and the **prompt cards**:
+
+**Flowchart (right panel SVG):**
+- Add a new `<g class="hook-group" data-hook="<HookEventName>">` element in the appropriate lifecycle position
+- Use `hook-rect-side` + `hook-text-side` classes for side-panel hooks (async/external events like Notification, ConfigChange, Elicitation, etc.)
+- Use regular `hook-rect` + `hook-text` classes for main-flow hooks
+- Include a `<text class="fire-count">` element for the fire counter
+- Add connecting arrows (`arrow-line`) or dashed connectors (`connector-dashed`) as appropriate
+- Adjust Y coordinates of subsequent elements if inserting in the middle of the flow
+- Update the `viewBox` height if the chart grows taller
+
+**Prompt cards (left panel):**
+- If the new hook fits an existing prompt card's scenario, add a `<span class="hook-tag"><HookEventName></span>` to that card's `.prompt-hooks` div
+- If the hook needs a new demo scenario, add a new `<div class="prompt-card">` with:
+  - A numbered step in `.prompt-step`
+  - Hook tags in `.prompt-hooks`
+  - Demo command(s) in `.prompt-code` with copy buttons
+- Renumber subsequent prompt cards if inserting in the middle
+
+**Branding text:**
+- Update the "22 supported" text in `.right-branding-text` to the new count
+
 ### `presentation/index.html`
 
 1. **Title slide:** Update version and date
@@ -137,6 +192,9 @@ Run these verifications:
 2. `grep -c "<HookEventName>" install/settings-mac.json` — must return ≥1
 3. `grep -c "<HookEventName>" install/settings-linux.json` — must return ≥1
 4. `grep -c "<HookEventName>" install/settings-windows.json` — must return ≥1
+5. `grep -c "<HookEventName>" demo/.claude/settings.json` — must return ≥1
+6. `grep -c "<HookEventName>" demo/.claude/hooks/scripts/demo-hooks.py` — must return ≥1
+7. `grep -c "<HookEventName>" demo/hooks-lifecycle.html` — must return ≥1
 
 Count hooks across all files and print a summary. **All counts must match the expected new total — if ANY count is wrong, fix it before finishing.**
 
@@ -155,6 +213,9 @@ HOOKS-README:     N hooks ✓/✗
 README.md:        changelog ✓/✗
 presentation:     N slides ✓/✗
 test-agent:       N hooks ✓/✗
+demo/settings:    N hooks ✓/✗
+demo/hooks.py:    N mappings ✓/✗
+demo/lifecycle:   flowchart + card ✓/✗
 ```
 
 **If any line shows ✗, stop and fix it before declaring done.**
@@ -165,11 +226,12 @@ test-agent:       N hooks ✓/✗
 
 1. **NEVER proceed past Step 1 if sound files don't exist** — always wait for the user
 2. **Read each file before editing** — understand current state first
-3. **ALL 4 settings files must be updated** — Windows uses `python` (not `python3`) and relative paths
+3. **ALL 5 settings files must be updated** — Windows uses `python` (not `python3`) and relative paths; demo uses `demo-hooks.py`
 4. **Keep `disableLogging` as the LAST entry** in hooks-config.json
-5. **Only update `HOOK_SOUND_MAP`** — not `AGENT_HOOK_SOUND_MAP`
+5. **Only update `HOOK_SOUND_MAP`** — not `AGENT_HOOK_SOUND_MAP` (in both `hooks.py` and `demo-hooks.py`)
 6. **Match existing code style exactly** — indentation, structure, formatting
 7. **Update ALL presentation references** — counts, slides, TOC, lifecycle, summary, `totalSlides`
+8. **Update ALL demo files** — `demo/.claude/settings.json`, `demo-hooks.py` HOOK_SOUND_MAP + docstring, and `hooks-lifecycle.html` flowchart SVG + prompt cards + branding count
 
 ---
 

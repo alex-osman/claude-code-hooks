@@ -1,6 +1,6 @@
 # Claude Code Voice Hooks
 
-Voice notification system for all 19 Claude Code hooks. Plays sound effects when hook events fire.
+Voice notification system for all 22 Claude Code hooks. Plays sound effects when hook events fire.
 
 ## Project Structure
 
@@ -17,7 +17,7 @@ Voice notification system for all 19 Claude Code hooks. Plays sound effects when
     claude-code-test-agent.md              # Tests all 22 hooks
   commands/workflows/
     workflow-changelog.md    # Coordinator: launches agents, merges findings, reports drift
-    workflow-add-hook.md     # Adds a new hook across all 11 files
+    workflow-add-hook.md     # Adds a new hook across all 14 files (incl. demo)
 install/
   settings-mac.json          # python3 + ${CLAUDE_PROJECT_DIR}
   settings-linux.json        # python3 + ${CLAUDE_PROJECT_DIR}
@@ -39,8 +39,11 @@ The hook count (currently **22**) MUST match across ALL of these locations:
 - `README.md` badge + changelog table
 - `presentation/index.html` (slides 2, 3, TOC, totalSlides)
 - `claude-code-test-agent.md` frontmatter + body
+- `demo/.claude/settings.json` hook entries
+- `demo/.claude/hooks/scripts/demo-hooks.py` HOOK_SOUND_MAP + docstring
+- `demo/hooks-lifecycle.html` flowchart SVG + prompt cards + branding count
 
-When adding a hook, use `/workflows:workflow-add-hook` — it updates all 11 files.
+When adding a hook, use `/workflows:workflow-add-hook` — it updates all 14 files.
 
 ## Agent Hooks
 
@@ -68,4 +71,4 @@ Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-
 
 ## Schema Note
 
-`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.76, Elicitation, ElicitationResult, and PostCompact are officially documented and need to be added to the repo (pending `/workflows:workflow-add-hook`).
+`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.77, all 22 schema hooks are implemented in the repo. No hidden/undocumented hooks remain.
