@@ -22,7 +22,7 @@ Open terminal in your project directory and run the following commands:
 
 ```bash
 mkdir -p .claude/hooks
-git clone https://github.com/shanraisshan/claude-code-voice-hooks.git temp-hooks
+git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
 cp -r temp-hooks/.claude/hooks/* .claude/hooks/
 rm -rf temp-hooks
 ```
@@ -52,14 +52,14 @@ To test the agent-specific hooks (PreToolUse, PostToolUse, Stop), copy the demo 
 
 ```bash
 mkdir -p .claude/agents
-git clone https://github.com/shanraisshan/claude-code-voice-hooks.git temp-hooks
-cp temp-hooks/.claude/agents/claude-code-voice-hook-agent.md .claude/agents/
+git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+cp temp-hooks/.claude/agents/claude-code-hook-agent.md .claude/agents/
 rm -rf temp-hooks
 ```
 
 After copying, run the agent in Claude Code with:
 ```
-/agents claude-code-voice-hook-agent
+/agents claude-code-hook-agent
 ```
 
 This agent fetches the weather for Dubai and demonstrates the PreToolUse, PostToolUse, and Stop hooks in action.

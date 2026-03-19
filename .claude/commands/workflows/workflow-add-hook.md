@@ -5,7 +5,7 @@ argument-hint: <HookEventName e.g. ConfigChange>
 
 # Add New Hook
 
-Add a new Claude Code hook event to the claude-code-voice-hooks project.
+Add a new Claude Code hook event to the claude-code-hooks project.
 
 **Hook event name:** `$ARGUMENTS` (if empty, ask the user)
 
@@ -41,7 +41,7 @@ Fetch all three sources in parallel using WebFetch:
 |----------|------|
 | `timeout` | Default `5000`. Use `30000` only for heavy init hooks (like `Setup`) |
 | `once` | Only for session-lifecycle hooks (like `SessionStart`, `SessionEnd`, `PreCompact`). Ask user if unsure, default to `false` |
-| `async` | Always `true` (all hooks in this project are async voice notifications) |
+| `async` | Always `true` (all hooks in this project are async sound notifications) |
 
 ## Step 4: Update All Files
 

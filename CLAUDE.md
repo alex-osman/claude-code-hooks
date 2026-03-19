@@ -1,6 +1,6 @@
-# Claude Code Voice Hooks
+# Claude Code Hooks
 
-Voice notification system for all 23 Claude Code hooks. Plays sound effects when hook events fire.
+Sound notification system for all 23 Claude Code hooks. Plays sound effects when hook events fire.
 
 ## Project Structure
 
@@ -67,7 +67,7 @@ Only **6 of 23** hooks fire in agent sessions: PreToolUse, PostToolUse, Permissi
 
 ## Memory
 
-Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-claude-code-voice-hooks/memory/MEMORY.md`
+Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-claude-code-hooks/memory/MEMORY.md`
 
 ## Schema Note
 

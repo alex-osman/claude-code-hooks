@@ -176,7 +176,7 @@ Agent frontmatter hooks support **6 hooks** (not all 16). The changelog original
 - `Stop`: Runs when the agent finishes
 - `SubagentStop`: Runs when a subagent completes
 
-> **Note:** The [v2.1.0 changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) only mentions 3 hooks: *"Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle"*. However, testing with the `claude-code-voice-hook-agent` confirms that 6 hooks actually fire in agent sessions. The remaining 10 hooks (e.g., Notification, SessionStart, SessionEnd, etc.) do not fire in agent contexts.
+> **Note:** The [v2.1.0 changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) only mentions 3 hooks: *"Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle"*. However, testing with the `claude-code-hook-agent` confirms that 6 hooks actually fire in agent sessions. The remaining 10 hooks (e.g., Notification, SessionStart, SessionEnd, etc.) do not fire in agent contexts.
 >
 > **Update (Feb 2026):** The [official hooks reference](https://code.claude.com/docs/en/hooks) now states *"All hook events are supported"* for skill/agent frontmatter hooks. This may mean support has expanded beyond the 6 hooks originally tested. Re-testing recommended to verify if additional hooks now fire in agent sessions.
 
@@ -250,7 +250,7 @@ Your agent instructions here...
 
 ### Example: Weather Fetcher Agent
 
-See `.claude/agents/claude-code-voice-hook-agent.md` for a complete example of an agent with hooks configured.
+See `.claude/agents/claude-code-hook-agent.md` for a complete example of an agent with hooks configured.
 
 ### Hook Option: `once: true`
 
@@ -287,7 +287,7 @@ Hooks can run in the background without blocking Claude Code's execution by addi
 - Notifications and sound effects
 - Any side-effect that shouldn't slow down Claude Code
 
-This project uses `async: true` for all hooks since voice notifications are side-effects that don't need to block execution. The `timeout` specifies how long the async hook can run before being terminated.
+This project uses `async: true` for all hooks since sound notifications are side-effects that don't need to block execution. The `timeout` specifies how long the async hook can run before being terminated.
 
 ### Hook Option: `asyncRewake` (since v2.1.72, undocumented)
 

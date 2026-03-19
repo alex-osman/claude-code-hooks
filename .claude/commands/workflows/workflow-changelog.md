@@ -5,7 +5,7 @@ argument-hint: [number of versions to check, default 10]
 
 # Workflow Changelog
 
-You are a coordinator for the claude-code-voice-hooks project. Your job is to launch two research agents in parallel, wait for their results, merge findings, and present a unified report.
+You are a coordinator for the claude-code-hooks project. Your job is to launch two research agents in parallel, wait for their results, merge findings, and present a unified report.
 
 **Versions to check:** `$ARGUMENTS` (default: 10 if empty or not a number)
 
@@ -21,7 +21,7 @@ This is a **read-then-report** workflow. Launch agents, merge results, and produ
 
 Spawn using `subagent_type: "workflow-changelog-agent"`. Give it this prompt:
 
-> Research the claude-code-voice-hooks project for changelog drift. Check the last $ARGUMENTS versions (default: 10).
+> Research the claude-code-hooks project for changelog drift. Check the last $ARGUMENTS versions (default: 10).
 >
 > Fetch these 3 external sources:
 > 1. Hooks Reference: https://code.claude.com/docs/en/hooks
