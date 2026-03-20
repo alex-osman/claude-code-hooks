@@ -303,3 +303,12 @@
 | 5 | MEDIUM | Not-in-Docs | Remove StopFailure from "Not in Official Docs" table; update Setup note | ❌ INVALID (user confirmed StopFailure is not in official docs — keep in table) |
 | 6 | LOW | Hook Options Table | Fix ElicitationResult Options: remove `action`/`content` (output fields), add `user_response`, `message` (input fields) | ✅ COMPLETE (fixed input/output field confusion) |
 | 7 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-20 07:22 AM PKT] Claude Code v2.1.80
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | MEDIUM | Matcher/Schema | Add `resume` to SessionEnd matcher values in HOOKS-README line 452 and presentation slide 17 | ✅ COMPLETE (added `resume` to both HOOKS-README and presentation) |
+| 2 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

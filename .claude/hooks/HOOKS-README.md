@@ -449,7 +449,7 @@ Matchers filter which events trigger a hook. Not all hooks support matchers — 
 | `SubagentStart` | `agent_type` | `Bash`, `Explore`, `Plan`, or custom agent name | `"matcher": "Bash"` |
 | `SubagentStop` | `agent_type` | `Bash`, `Explore`, `Plan`, or custom agent name | `"matcher": "Bash"` |
 | `SessionStart` | `source` | `startup`, `resume`, `clear`, `compact` | `"matcher": "startup"` |
-| `SessionEnd` | `reason` | `clear`, `logout`, `prompt_input_exit`, `bypass_permissions_disabled`, `other` | `"matcher": "logout"` |
+| `SessionEnd` | `reason` | `clear`, `resume`, `logout`, `prompt_input_exit`, `bypass_permissions_disabled`, `other` | `"matcher": "logout"` |
 | `PreCompact` | `trigger` | `manual`, `auto` | `"matcher": "auto"` |
 | `PostCompact` | `trigger` | `manual`, `auto` | `"matcher": "manual"` |
 | `Elicitation` | `mcp_server_name` | MCP server name | `"matcher": "my-mcp-server"` |
