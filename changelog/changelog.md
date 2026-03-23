@@ -312,3 +312,13 @@
 |---|----------|------|--------|--------|
 | 1 | MEDIUM | Matcher/Schema | Add `resume` to SessionEnd matcher values in HOOKS-README line 452 and presentation slide 17 | ✅ COMPLETE (added `resume` to both HOOKS-README and presentation) |
 | 2 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-23 09:44 PM PKT] Claude Code v2.1.81
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | MEDIUM | Not-in-Docs Table | Remove StopFailure from Not-in-Docs table; update Setup note from "21 hooks listed" to "22 hooks listed, Setup excluded" | ✋ ON HOLD (user decision: keep StopFailure in Not-in-Docs table like Setup) |
+| 2 | LOW | Hook Options Table | Remove `mode` from ElicitationResult Options column — not in official docs for this hook (only for Elicitation) | ✅ COMPLETE (removed `mode` from ElicitationResult Options) |
+| 3 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

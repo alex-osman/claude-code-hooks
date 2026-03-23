@@ -27,7 +27,7 @@ Claude Code provides several hook events that run at different points in the wor
 | 19 | `WorktreeRemove` | Runs when agent worktree isolation removes worktrees for custom VCS teardown | `async`, `timeout: 5000`, `worktree_path` |
 | 20 | `InstructionsLoaded` | Runs when CLAUDE.md or `.claude/rules/*.md` files are loaded into context | `async`, `timeout: 5000`, `file_path`, `memory_type`, `load_reason`, `globs`, `trigger_file_path`, `parent_file_path` |
 | 21 | `Elicitation` | Runs when an MCP server requests user input during a tool call | `async`, `timeout: 5000`, `mcp_server_name`, `message`, `mode`, `url`, `elicitation_id`, `requested_schema` |
-| 22 | `ElicitationResult` | Runs after a user responds to an MCP elicitation, before the response is sent back to the server | `async`, `timeout: 5000`, `mcp_server_name`, `user_response`, `message`, `mode`, `elicitation_id` |
+| 22 | `ElicitationResult` | Runs after a user responds to an MCP elicitation, before the response is sent back to the server | `async`, `timeout: 5000`, `mcp_server_name`, `user_response`, `message`, `elicitation_id` |
 | 23 | `StopFailure` | Runs when the turn ends due to an API error (rate limit, auth failure, etc.) | `async`, `timeout: 5000`, `error`, `error_details`, `last_assistant_message` |
 
 > **Note:** Hooks 15-16 (`TeammateIdle` and `TaskCompleted`) require the experimental agent teams feature. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` when launching Claude Code to enable them.
