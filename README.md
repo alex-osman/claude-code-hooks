@@ -16,7 +16,7 @@
   <a href="presentation/index.html"><img src="!/pill-slides.svg" alt="Slides" height="36"></a>
 </p>
 
-[![thumbnail](!/thumbnail3.jpg)](https://youtu.be/6_y3AtkgjqA)
+[![thumbnail](!/thumbnail/thumbnail3.jpg)](https://youtu.be/6_y3AtkgjqA)
 
 ## Installation
 
