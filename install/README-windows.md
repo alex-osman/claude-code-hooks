@@ -20,17 +20,19 @@ All details are mentioned in [HOOKS-README.md](../.claude/hooks/HOOKS-README.md)
 Open terminal in your project directory and run the following commands:
 
 **PowerShell:**
+
 ```powershell
 New-Item -ItemType Directory -Force -Path .claude\hooks
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 Copy-Item -Recurse -Force temp-hooks\.claude\hooks\* .claude\hooks\
 Remove-Item -Recurse -Force temp-hooks
 ```
 
 **Command Prompt:**
+
 ```cmd
 if not exist .claude\hooks mkdir .claude\hooks
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 xcopy /E /I /Y temp-hooks\.claude\hooks\* .claude\hooks\
 rmdir /S /Q temp-hooks
 ```
@@ -41,6 +43,7 @@ rmdir /S /Q temp-hooks
 2. Open [`install/settings-windows.json`](settings-windows.json) and copy the keys (`disableAllHooks` and `hooks`) into your `.claude/settings.json`
 
 > **Why separate settings files per platform?**
+>
 > - Python command: `python3` (macOS/Linux) vs `python` (Windows)
 > - Script path: `${CLAUDE_PROJECT_DIR}` env variable (macOS/Linux) vs relative path (Windows)
 
@@ -59,22 +62,25 @@ claude
 To test the agent-specific hooks (PreToolUse, PostToolUse, Stop), copy the demo agent file:
 
 **PowerShell:**
+
 ```powershell
 New-Item -ItemType Directory -Force -Path .claude\agents
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 Copy-Item temp-hooks\.claude\agents\claude-code-hook-agent.md .claude\agents\
 Remove-Item -Recurse -Force temp-hooks
 ```
 
 **Command Prompt:**
+
 ```cmd
 if not exist .claude\agents mkdir .claude\agents
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 copy temp-hooks\.claude\agents\claude-code-hook-agent.md .claude\agents\
 rmdir /S /Q temp-hooks
 ```
 
 After copying, run the agent in Claude Code with:
+
 ```
 /agents claude-code-hook-agent
 ```

@@ -22,7 +22,7 @@ Open terminal in your project directory and run the following commands:
 
 ```bash
 mkdir -p .claude/hooks
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 cp -r temp-hooks/.claude/hooks/* .claude/hooks/
 rm -rf temp-hooks
 ```
@@ -33,6 +33,7 @@ rm -rf temp-hooks
 2. Open [`install/settings-linux.json`](settings-linux.json) and copy the keys (`disableAllHooks` and `hooks`) into your `.claude/settings.json`
 
 > **Why separate settings files per platform?**
+>
 > - Python command: `python3` (macOS/Linux) vs `python` (Windows)
 > - Script path: `${CLAUDE_PROJECT_DIR}` env variable (macOS/Linux) vs relative path (Windows)
 
@@ -52,12 +53,13 @@ To test the agent-specific hooks (PreToolUse, PostToolUse, Stop), copy the demo 
 
 ```bash
 mkdir -p .claude/agents
-git clone https://github.com/shanraisshan/claude-code-hooks.git temp-hooks
+git clone https://github.com/alex-osman/claude-code-hooks.git temp-hooks
 cp temp-hooks/.claude/agents/claude-code-hook-agent.md .claude/agents/
 rm -rf temp-hooks
 ```
 
 After copying, run the agent in Claude Code with:
+
 ```
 /agents claude-code-hook-agent
 ```
