@@ -158,7 +158,7 @@ def play_sound(sound_name):
     # Try different audio formats
     # Note: paplay (PulseAudio) doesn't support MP3, so try WAV first
     # On Windows, only use WAV files to avoid PowerShell/COM issues
-    extensions = ['.wav'] if is_windows else ['.wav', '.mp3']
+    extensions = ['.wav'] if is_windows else ['.mp3']
 
     for extension in extensions:
         file_path = sounds_dir / f"{sound_name}{extension}"
